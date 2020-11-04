@@ -1,0 +1,49 @@
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    config:
+      failFast: true
+      uri: ${CONFIG_SERVER:http://localhost:8762}
+      retry:
+        initial-interval: 1500
+        multiplier: 1.5
+        max-attempts: 10000
+        max-interval: 1000
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: store-preference-service
+          uri: ${STORE_SERVICE_URI:lb://store-preference-service}
+          predicates:
+            - Path=/preference/create/**
+          filters:
+            - RewritePath=/preference/create/(?<path>.*), /$\{path}
+        - id: preference-edit
+          uri: ${STORE_SERVICE_URI:lb://store-preference-service}
+          predicates:
+            - Path=/preference/edit/**
+          filters:
+            - RewritePath=/preference/edit/(?<path>.*), /$\{path}
+        - id: fetch-preferences-service
+          uri: ${FETCH_SERVICE_URL:lb://fetch-preferences-service}
+          predicates:
+            - Path=/preferences/**
+            - Method=GET
+          filters:
+            - RewritePath=/preferences/(?<path>.*), /$\{path}
+        - id: openapi
+          uri: http://localhost:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs

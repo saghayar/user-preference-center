@@ -1,0 +1,90 @@
+[
+  {
+    "id": "3023bf00-1985-41c1-ae62-c3b156ed73eb",
+    "descriptiveData": {
+      "civilStatus": "MMMMMMM",
+      "petOwnership": "df",
+      "income": "ad"
+    },
+    "behavioralData": {
+      "socialMediaUsage": false,
+      "frequentlyUsedDeviceName": "asd",
+      "keywordUsedToFindWebSite": "asd"
+    },
+    "identityData": {
+      "customerName": "asda",
+      "gender": "asd",
+      "phoneNumber": "asd",
+      "postalCode": "asd",
+      "email": "asd",
+      "age": 0
+    },
+    "preferenceType": "EMAIL"
+  },
+  {
+    "id": "7f4ff941-e1ac-4d18-8f42-7046f712fdc5",
+    "descriptiveData": {
+      "civilStatus": "MMMMMMM",
+      "petOwnership": "dd",
+      "income": "ad"
+    },
+    "behavioralData": {
+      "socialMediaUsage": false,
+      "frequentlyUsedDeviceName": "asd",
+      "keywordUsedToFindWebSite": "asd"
+    },
+    "identityData": {
+      "customerName": "asda",
+      "gender": "asd",
+      "phoneNumber": "asd",
+      "postalCode": "asd",
+      "email": "asd",
+      "age": 0
+    },
+    "preferenceType": "EMAIL"
+  },
+  {
+    "id": "9896bde4-6b09-4db6-882c-385c46c8b8e6",
+    "descriptiveData": {
+      "civilStatus": "PPP",
+      "petOwnership": "dd",
+      "income": "ad"
+    },
+    "behavioralData": {
+      "socialMediaUsage": false,
+      "frequentlyUsedDeviceName": "asd",
+      "keywordUsedToFindWebSite": "asd"
+    },
+    "identityData": {
+      "customerName": "asda",
+      "gender": "asd",
+      "phoneNumber": "asd",
+      "postalCode": "asd",
+      "email": "asd",
+      "age": 0
+    },
+    "preferenceType": "EMAIL"
+  },
+  {
+    "id": "006cd88b-e098-48b8-9d43-5b9d4eed43e4",
+    "descriptiveData": {
+      "civilStatus": "MMMMMMM",
+      "petOwnership": "dd",
+      "income": "ad"
+    },
+    "behavioralData": {
+      "socialMediaUsage": false,
+      "frequentlyUsedDeviceName": "asd",
+      "keywordUsedToFindWebSite": "asd"
+    },
+    "identityData": {
+      "customerName": "asda",
+      "gender": "asd",
+      "phoneNumber": "asd",
+      "postalCode": "asd",
+      "email": "asd",
+      "age": 0
+    },
+    "preferenceType": "EMAIL"
+  }
+]

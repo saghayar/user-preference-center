@@ -1,0 +1,11 @@
+server:
+  port: 8764
+spring:
+  data:
+    mongodb:
+      database: preference-center
+      port: 27017
+      host: ${MONGO_DB:localhost}
+
+springdoc:
+  packagesToScan: com.tgtech.preferencecenter

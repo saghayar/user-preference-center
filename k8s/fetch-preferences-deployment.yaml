@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetch-preferences-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: fetch-preferences-service
+  template:
+    metadata:
+      labels:
+        component: fetch-preferences-service
+    spec:
+      containers:
+        - env:
+            - name: CONFIG_SERVER
+              value: http://config-server-cluster-ip-service:8762
+            - name: EUREKA_SERVER
+              value: http://eureka-cluster-ip-service:8761/eureka
+            - name: MONGO_DB
+              value: mongodb #host name
+          image: samiraghayarov/fetch-preferences-service
+          name: fetch-preferences-service
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
+          ports:
+            - containerPort: 8764
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fetch-preferences-service
+spec:
+  type: ClusterIP
+  selector:
+    component: fetch-preferences-service
+  ports:
+    - port: 8764
+      targetPort: 8764

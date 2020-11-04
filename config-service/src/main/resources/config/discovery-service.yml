@@ -1,0 +1,13 @@
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  server:
+    peer-node-read-timeout-ms: 99999
+
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discovery-server

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: configserver
+  template:
+    metadata:
+      labels:
+        component: configserver
+    spec:
+      containers:
+        - name: configserver
+          image: samiraghayarov/config-service
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
+          ports:
+            - containerPort: 8762
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: configserver
+  ports:
+    - port: 8762
+      targetPort: 8762
+

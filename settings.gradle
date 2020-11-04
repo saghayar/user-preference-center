@@ -1,0 +1,9 @@
+rootProject.name = "preference-center"
+include(
+        "config-service",
+        "discovery-service",
+        "gateway-service",
+        "common",
+        "store-preference-service",
+        "fetch-preferences-service"
+)

@@ -1,0 +1,22 @@
+{
+  "id": "006cd88b-e098-48b8-9d43-5b9d4eed43e4",
+  "descriptiveData": {
+    "civilStatus": "PPP",
+    "petOwnership": "dd",
+    "income": "ad"
+  },
+  "behavioralData": {
+    "socialMediaUsage": false,
+    "frequentlyUsedDeviceName": "asd",
+    "keywordUsedToFindWebSite": "asd"
+  },
+  "identityData": {
+    "customerName": "asda",
+    "gender": "asd",
+    "phoneNumber": "asd",
+    "postalCode": "asd",
+    "email": "asd",
+    "age": 0
+  },
+  "preferenceType": "EMAIL"
+}

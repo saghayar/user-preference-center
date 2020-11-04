@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: gateway
+  template:
+    metadata:
+      labels:
+        component: gateway
+    spec:
+      containers:
+        - env:
+            - name: CONFIG_SERVER
+              value: http://config-server-cluster-ip-service:8762
+            - name: EUREKA_SERVER
+              value: http://eureka-cluster-ip-service:8761/eureka
+            - name: STORE_SERVICE_URI
+              value: http://store-preference-service:8763
+            - name: FETCH_SERVICE_URI
+              value: http://fetch-preferences-service:8764
+          image: samiraghayarov/gateway-service
+          name: gateway
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
+          ports:
+            - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: gateway
+  ports:
+    - port: 9090
+      targetPort: 9090

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-preference-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: store-preference-service
+  template:
+    metadata:
+      labels:
+        component: store-preference-service
+    spec:
+      containers:
+        - env:
+            - name: CONFIG_SERVER
+              value: http://config-server-cluster-ip-service:8762
+            - name: EUREKA_SERVER
+              value: http://eureka-cluster-ip-service:8761/eureka
+            - name: MONGO_DB
+              value: mongodb
+          image: samiraghayarov/store-preference-service
+          name: store-preference-service
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
+          ports:
+            - containerPort: 8763
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  store-preference-service
+spec:
+  type: ClusterIP
+  selector:
+    component: store-preference-service
+  ports:
+    - port: 8763
+      targetPort: 8763

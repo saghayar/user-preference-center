@@ -1,0 +1,63 @@
+version: '3'
+services:
+
+  config:
+    image: samiraghayarov/config-service
+    ports:
+      - 8762:8762
+    hostname: config
+
+  mongo:
+    image: mvertes/alpine-mongo
+    ports:
+      - 27017:27017
+    hostname: mongo
+
+  discovery:
+    image: samiraghayarov/discovery-service
+    ports:
+      - 8761:8761
+    hostname: discovery
+    environment:
+      CONFIG_SERVER: "http://config:8762"
+    depends_on:
+      - config
+
+  fetch-preferences-service:
+    image: samiraghayarov/fetch-preferences-service
+    ports:
+      - 8764:8764
+    environment:
+      MONGO_DB: "mongo"
+      CONFIG_SERVER: "http://config:8762"
+      EUREKA_SERVER: "http://discovery:8761/eureka"
+    depends_on:
+      - mongo
+      - config
+      - discovery
+
+  store-preference-service:
+    image: samiraghayarov/store-preference-service
+    ports:
+      - 8763:8763
+    environment:
+      MONGO_DB: "mongo"
+      CONFIG_SERVER: "http://config:8762"
+      EUREKA_SERVER: "http://discovery:8761/eureka"
+    depends_on:
+      - mongo
+      - config
+      - discovery
+
+  gateway:
+    image: samiraghayarov/gateway-service
+    ports:
+      - 9090:9090
+    environment:
+      CONFIG_SERVER: "http://config:8762"
+      EUREKA_SERVER: "http://discovery:8761/eureka"
+    depends_on:
+      - config
+      - discovery
+      - fetch-preferences-service
+      - store-preference-service
