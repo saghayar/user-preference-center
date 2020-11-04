@@ -1,4 +1,4 @@
-- **Running application in local docker container
+- ## Running application in local docker container
 
   -`gradle clean build && gradle config-service:docker discovery-service:docker gateway-service:docker store-preference-service:docker fetch-preferences-service:docker` -  will build application and create docker images
   -`docker-compose up` will run application locally
@@ -6,14 +6,14 @@
 
 
 
-- **Running application in k8s cluster :
+- ## Running application in k8s cluster :
 
   -`cd k8s `
 
   -`sh apply-all.sh`
 
 
-**Note :
+## Note :
 
 /k8s folder has kubernetes deployment files, images already pushed to DockerHub.
 
